@@ -1,0 +1,15 @@
+<%- include ('partials/nav')  %> 
+<section id="landing" class="flex-center" >
+
+<% let path = jumbotron[0].imgPath %>
+<% let path1 = path.replace('public', '').replace('\\', '').replace('\\', '/').replace('\\', '/')%> 
+
+  <img class="jumbo-bck-img" src="./<%= path1 %>" alt="">
+  <div class="jumbo">
+    <h1><%= jumbotron[0].title %></h1>
+    <p><%= jumbotron[0].text %></p>
+    <a href="#projects" class="btn"><%= jumbotron[0].btnText %></a>
+    <a href="#projects"><img class="down" src="./img/down.svg" alt=""></a>
+  </div>
+  
+  </section>

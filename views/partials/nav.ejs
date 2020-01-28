@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://kit.fontawesome.com/ef2628d165.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet"> 
+  <title>Document</title>
+</head>
+<body>
+  <header class="navigation">
+    <div class="nav-logo"><span>MY</span>LOGO</div>
+    <div class="nav-toggle"><i class="fas fa-bars"></i></div>
+    <ul class="nav hidden">
+      <li class="nav-item"><a href="#">navItem</a></li>
+      <li class="nav-item"><a href="#">navItem</a></li>
+      <li class="nav-item"><a href="#">navItem</a></li>
+    </ul>
+  </header>
+
+  <style>
+    
+   
+  header.navigation{
+    position: relative;
+    width: 100%;
+    height: 12vh;
+    background-color: var(--primC);
+    color: var(--dimC);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .navigation .nav-logo{
+    transform: translateX(-150px);
+    transition: 0.2s ease-in;
+    opacity: 0;
+    font-size: 1.8rem;
+    margin-right: auto;
+  }
+  .navigation .nav-logo span{
+    color: var(--popC);
+    font-weight: bold;
+  }
+  .navigation .nav-toggle{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(208, 215, 224);
+    cursor: pointer;
+  }
+  .navigation .nav-toggle:hover{
+    color: var(--secC);
+  }
+  .navigation .cross{
+    transition: 0.4s ease-out;
+    border: none;
+    position: absolute;
+    z-index: 10;
+    top: 11vh;
+    right: -100px;
+
+  }
+  .navigation .nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 50px;
+    transition: 0.2s ease-in;
+  }
+  .navigation .nav .nav-item{
+    list-style: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+  }
+  .navigation a:hover{
+    color: var(--secC);
+  }
+  .navigation .nav.visible{
+    position: absolute;
+    background-color: var(--primC);
+    flex-direction: column;
+    right: 0;
+    top: 12vh;
+    padding: 25px 50px;
+    
+    transform: translateX(250px);
+    
+  }
+  .navigation .nav.hidden{
+    display: none;
+    
+ }
+  @media only screen and (min-width: 780px){
+    .navigation .nav-toggle{display: none;}
+    .navigation .nav.hidden{display: flex;}
+    header.navigation{height: 10vh; padding: 0 50px; }
+    .navigation .nav.visible{position: relative;top:auto; right: auto; flex-direction: row}
+  }
+  .appear{
+    transform: translateX(0)!important;
+    
+  }
+  .cross.appear{
+    right: 25px;
+  }
+  .nav-logo.appear{
+    opacity:1;
+  }
+  </style>
+  <script>
+    (function(){
+    let toggle = document.querySelector('.nav-toggle')
+    let nav = document.querySelector('.nav')
+    let logo = document.querySelector('.nav-logo')
+    toggle.addEventListener('click',()=>{
+      if (nav.classList.contains('hidden')) {
+        nav.classList.remove('hidden')
+        nav.classList.add('visible')
+        toggle.classList.add('cross')
+        setTimeout(()=>{
+          toggle.classList.add('appear')
+          nav.classList.add('appear')
+        }, 10)
+        toggle.innerHTML = `<i class="fas fa-times"></i>`
+        
+      } else {
+        toggle.classList.remove('appear')
+        nav.classList.remove('appear')
+        setTimeout(() => { 
+        nav.classList.remove('visible')
+        nav.classList.add('hidden')
+        toggle.classList.remove('cross')
+        toggle.innerHTML = `<i class="fas fa-bars"></i>`
+        }, 300);
+      }
+    })
+    window.addEventListener('load',()=>{
+      console.log('load');
+      
+      setTimeout(() => {
+        logo.classList.add('appear')
+      }, 20);
+    })
+    })()
+  </script>
+
+</body>
+</html>
